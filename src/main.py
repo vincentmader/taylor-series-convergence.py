@@ -2,6 +2,7 @@
 from math import pi as PI
 import os
 
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 from tqdm import tqdm
@@ -17,7 +18,8 @@ N_X = 1000
 N = 20
 
 plt.style.use(MPL_THEME)
-
+# mpl.rcParams["text.usetex"] = True
+# mpl.rcParams["text.latex.preamble"] = ["\\usepackage{amsmath}"] # This is needed for `\text` command.
 
 
 def factorial(x): 
@@ -67,6 +69,7 @@ def foo(title, func, func_taylor, ylims):
 
     x = np.linspace(X_MIN, X_MAX, N_X)
     y = np.zeros(N_X)
+    label = r"$\mathrm{" + title + "}(x)$"
 
     for n in tqdm(range(N)):
         a = func_taylor(x, X_0, n)
@@ -74,11 +77,16 @@ def foo(title, func, func_taylor, ylims):
 
         fig = plt.figure(figsize=FIGSIZE)
 
-        plt.plot(x, func(x), 'w')
-        plt.plot(x, y, 'g', linewidth=2)
+        plt.plot(x, func(x), 'w', label=f"original function {label}")
+        plt.plot(x, y, 'g', linewidth=2, label=f"Taylor series up to $N={n}$")
 
         plt.xlim(X_MIN, X_MAX)
         plt.ylim(ylims[0], ylims[1])
+
+        plt.xlabel("$x$")
+        plt.ylabel("$f(x)$")
+
+        plt.legend(loc="upper left")
 
         path_to_savefiles = os.path.join(PATH_TO_PLOTS, title)
         if not os.path.exists(path_to_savefiles):
