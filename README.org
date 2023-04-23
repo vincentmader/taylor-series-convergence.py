@@ -5,3 +5,5 @@ This script creates animations showing the convergence of the Taylor series (as 
 To use it, just run `make setup` followed by `make run`.
 
 Alternatively, you can also execute the two scripts `./bin/setup` and `./bin/run` manually, e.g. if you do not have the `make` tool installed on your machine.
+
+[[./example.png]]
