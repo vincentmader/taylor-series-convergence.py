@@ -1,4 +1,4 @@
-#+title: Visualization of Taylor series' convergence
+#+title: Visualization of Taylor series convergence
 
 This script creates animations showing the convergence of the Taylor series (as more & more terms are included) towards various common functions.
 
